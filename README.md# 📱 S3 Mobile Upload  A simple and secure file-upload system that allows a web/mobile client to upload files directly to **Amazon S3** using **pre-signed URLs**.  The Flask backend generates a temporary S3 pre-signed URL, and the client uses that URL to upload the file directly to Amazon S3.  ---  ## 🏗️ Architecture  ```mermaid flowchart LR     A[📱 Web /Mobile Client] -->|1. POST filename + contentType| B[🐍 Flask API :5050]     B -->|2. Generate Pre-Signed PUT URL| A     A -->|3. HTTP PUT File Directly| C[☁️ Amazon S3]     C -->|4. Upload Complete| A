@@ -1,0 +1,14 @@
+# 📱 S3 Mobile Upload
+
+A simple and secure file-upload system that allows a web/mobile client to upload files directly to Amazon S3 using pre-signed URLs.
+
+The Flask backend generates a temporary S3 pre-signed URL, and the client uses that URL to upload the file directly to Amazon S3.
+
+## 🏗️ Architecture
+
+```mermaid
+flowchart LR
+    A[📱 Web / Mobile Client] -->|1. Request Upload URL| B[🐍 Flask API :5050]
+    B -->|2. Generate Pre-Signed URL| A
+    A -->|3. Direct HTTP PUT Upload| C[☁️ Amazon S3]
+    C -->|4. Upload Complete| A
